@@ -1,0 +1,39 @@
+<div class="map" id="map" class="match-parent">
+  <!-- src/app/map/map.component.html -->
+
+  <mgl-map [style]="mapStyle" [zoom]="zoom" [center]="center">
+    <!-- Add these within the <mgl-map> tag in map.component.html -->
+
+    <mgl-geojson-source *ngIf="pointsLayer" id="points" [data]="pointsLayer">
+    </mgl-geojson-source>
+    <mgl-layer
+      *ngIf="pointsLayer"
+      id="pointsLayer"
+      type="circle"
+      source="points"
+      [paint]="{
+        'circle-radius': 5,
+        'circle-color': '#0000ff'
+      }"
+    >
+    </mgl-layer>
+
+    <mgl-geojson-source
+      *ngIf="polygonsLayer"
+      id="polygons"
+      [data]="polygonsLayer"
+    >
+    </mgl-geojson-source>
+    <mgl-layer
+      *ngIf="polygonsLayer"
+      id="polygonsLayer"
+      type="fill"
+      source="polygons"
+      [paint]="{
+        'fill-color': '#0000ff',
+        'fill-opacity': 0.5
+      }"
+    >
+    </mgl-layer>
+  </mgl-map>
+</div>
